@@ -26,7 +26,7 @@ public class RequestController {
     }
 
     @PostMapping("/request")
-    public String newRequest(@RequestBody Request request, HttpSession session) {
+    public Request newRequest(@RequestBody Request request, HttpSession session) {
         @SuppressWarnings("unchecked")
         List<Request> requests = (List<Request>) session.getAttribute("REQUESTS");
         if(Objects.isNull(requests)) {
@@ -36,6 +36,6 @@ public class RequestController {
         requests.add(request);
         session.setAttribute("REQUESTS", requests);
         System.out.println(requests);
-        return "OK!";
+        return request;
     }
 }
